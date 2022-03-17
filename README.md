@@ -1,3 +1,3 @@
 # gdsc_hackfest
-MeoCon
+## MeoCon
 Aziz || Liza
