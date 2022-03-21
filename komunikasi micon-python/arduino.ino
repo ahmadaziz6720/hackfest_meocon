@@ -1,10 +1,18 @@
 int x;
 void setup() {
- Serial.begin(115200);
+ Serial.begin(9600);
  Serial.setTimeout(1);
+ pinMode(13, OUTPUT);
 }
 void loop() {
  while (!Serial.available());
  x = Serial.readString().toInt();
- Serial.print(x + 1);
+ if (x == 1) {
+  digitalWrite(13, HIGH);
+ }
+ else {
+  digitalWrite(13, LOW);
+ }
+  Serial.println("aaaa");
+  delay(500);
 }
