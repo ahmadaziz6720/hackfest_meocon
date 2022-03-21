@@ -12,32 +12,7 @@ from sklearn.metrics import classification_report
 from imutils import paths
 import numpy as np
 import os
-
-
-def preprocessImages(dir, category):
-	data = []
-	labels = []
-
-	for category in categories:
-		path = os.path.join(dir, category)
-		for img in os.listdir(path):
-			img_path = os.path.join(path, img)
-			image = load_img(img_path, target_size=(224, 224))
-			image = img_to_array(image)
-			image = preprocess_input(image)
-
-			data.append(image)
-			labels.append(category)
-
-	labels = LabelBinarizer().fit_transform(labels)
-	labels = to_categorical(labels)
-
-	data = np.array(data, dtype="float32")
-	labels = np.array(labels)
-
-	return (data, labels)
-
-
+	
 
 LEARNINGRATE = 1e-4
 EPOCHS = 20
@@ -47,11 +22,28 @@ dir = r"datasets"
 categories = ["mask", "noMask"]
 
 print("[Loading images...]")
-data, labels = preprocessImages(dir, categories)
+data = []
+labels = []
+for category in categories:
+	path = os.path.join(dir, category)
+	for img in os.listdir(path):
+		img_path = os.path.join(path, img)
+		image = load_img(img_path, target_size=(224, 224))
+		image = img_to_array(image)
+		image = preprocess_input(image)
 
+		data.append(image)
+		labels.append(category)
+
+lb = LabelBinarizer()
+labels = lb.fit_transform(labels)
+labels = to_categorical(labels)
+
+data = np.array(data, dtype="float32")
+labels = np.array(labels)
 
 # split data for train and test
-trainX, testX, trainY, testY = train_test_split(data, labels, test_size=0.20, stratify=labels, random_state=42)
+trainX, testX, trainY, testY = train_test_split(data, labels, test_size=0.20, stratify=labels, random_state=40)
 
 # augmentation
 aug = ImageDataGenerator(
@@ -81,10 +73,10 @@ for layer in baseModel.layers:
 
 # compile model
 print("[Compiling model...]")
-opt = Adam(lr=LEARNINGRATE, decay=LEARNINGRATE / EPOCHS)
+opt = Adam(learning_rate=LEARNINGRATE, decay=LEARNINGRATE / EPOCHS)
 model.compile(loss="binary_crossentropy", optimizer=opt, metrics=["accuracy"])
 
-# train the head of the network
+# train the head
 H = model.fit(
 	aug.flow(trainX, trainY, batch_size=BATCHSIZE),
 	steps_per_epoch=len(trainX) // BATCHSIZE,
@@ -92,13 +84,13 @@ H = model.fit(
 	validation_steps=len(testX) // BATCHSIZE,
 	epochs=EPOCHS)
 
-# make predictions on the testing set
+# make predictions on the testing
 print("[Predicting...")
 predIdx = model.predict(testX, batch_size=BATCHSIZE)
 predIdx = np.argmax(predIdx, axis=1)
 
-print(classification_report(testY.argmax(axis=1), predIdx, target_names=LabelBinarizer().classes_))
+print(classification_report(testY.argmax(axis=1), predIdx, target_names=lb.classes_))
 
 # save trained model
 print("[Saving mask detector model...]")
-model.save("maskModel\trainedDetection.model", save_format="h5")
+model.save("maskModel/trainedDetection.model", save_format="h5")
