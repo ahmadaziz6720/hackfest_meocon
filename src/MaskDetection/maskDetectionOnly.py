@@ -1,20 +1,9 @@
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
-from time import sleep
 import numpy as np
 import cv2
-import serial
-import serial.tools.list_ports
 import time
-
-arduino = serial.Serial(port='COM10', baudrate=115200, timeout=1)
-
-def write_read(x):
-    arduino.write(bytes(x, 'utf-8'))
-    time.sleep(0.05)
-    data = arduino.readline().decode('utf-8').rstrip()
-    return data
 
 def detectMask(frame, faceNet, maskNet):
 	# set dimensions
@@ -75,7 +64,6 @@ cap = cv2.VideoCapture(0)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-i=0
 while True:
 	ret, frame = cap.read()
 
@@ -95,11 +83,6 @@ while True:
 		cv2.putText(frame, label, (x1, y1 - 10), font, 0.45, color, 2)
 
 	cv2.imshow("Mask Detection", frame)
-	# return True if mask > noMask else False
-	temp = "1" if mask > noMask else "0"
-	value = write_read(temp)
-	i+=1
-	print(value, str(i))
 
 	if (cv2.waitKey(1) & 0xFF) == ord("q"):
 		break
