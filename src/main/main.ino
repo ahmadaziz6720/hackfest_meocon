@@ -1,4 +1,4 @@
-#include <Adafruit_MLX90614.h> //temp sensor
+#include <Adafruit_MLX90614.h> //SDA=A4; SCL=A5
 #include <Servo.h>
 
 Servo servo_hs; 

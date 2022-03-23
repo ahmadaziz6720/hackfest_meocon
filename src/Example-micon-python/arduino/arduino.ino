@@ -1,6 +1,6 @@
 int x;
 void setup() {
- Serial.begin(9600);
+ Serial.begin(115200);
  Serial.setTimeout(1);
  pinMode(13, OUTPUT);
 }
@@ -13,6 +13,5 @@ void loop() {
  else {
   digitalWrite(13, LOW);
  }
-  Serial.println("aaaa");
-  delay(500);
+ Serial.println("Haiii Lizaa");
 }
