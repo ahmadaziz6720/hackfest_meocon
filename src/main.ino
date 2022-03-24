@@ -1,4 +1,7 @@
-#define relay_pump 2
+#include <Adafruit_MLX90614.h>
+Adafruit_MLX90614 mlx = Adafruit_MLX90614();
+
+define relay_pump 2
 #define relay_lock 3
 #define ir_out 5
 #define trig 8
@@ -13,6 +16,7 @@ int maximumRange = 200;
 int minimumRange = 0;
 long duration, distance;
 unsigned long timer;
+float temp = 0;
 
 void setup() {
   pinMode(relay_pump, OUTPUT);
@@ -26,6 +30,7 @@ void setup() {
   pinMode(13, OUTPUT);
 }
 void loop() {
+  //Serial communication
   while (!Serial.available());
   masker = Serial.readString().toInt();
   if (masker == 1) {
@@ -34,7 +39,9 @@ void loop() {
   else {
     digitalWrite(13, LOW);
   }
-  Serial.println(String(state) + " " + String(distance) + " " + String(digitalRead(ir_hs)) + " " + String(digitalRead(ir_out))+ " " + String(people));
+  Serial.println(String(state) + " " + String(distance) + " " + String(digitalRead(ir_hs)) + " " + String(digitalRead(ir_out))+ " " + String(people))+ " " + String(temp));
+  
+  //Ultrasonic
   digitalWrite(trig, LOW);delayMicroseconds(2);
   digitalWrite(trig, HIGH);delayMicroseconds(10);
   digitalWrite(trig, LOW);
@@ -46,10 +53,15 @@ void loop() {
     masuk =false;
   }
 
+  //Temperature Sensor
+  temp = mlx.readAmbientTempC();
+
+  //Mask Detection
   if(masker == 1 && state == 0){
     state =1;
   }
     
+  //State Machine
   if(state==1 && digitalRead(ir_hs)==0){
     digitalWrite(relay_pump, LOW);
     timer = millis();
