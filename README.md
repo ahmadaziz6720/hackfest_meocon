@@ -8,7 +8,7 @@
 
 
 ## GENERAL INFORMATION
-Approkes are a set of tools that are installed at the entrance of the building/room to ensure that everyone who will enter the building has followed the health protocol. The protocols checked are wearing a mask, normal body temperature, using hand sanitizer, and the available room capacity. Visitor data will also be integrated into the website operated by the admin.
+Approkes are a set of tools that are installed at the entrance of the building/room to ensure that everyone who will enter the building has followed the health protocol. The protocols checked are wearing a mask, normal body temperature, using hand sanitizer, and the available room capacity. Visitor data will also be integrated to firebase.
 
 This product is a solution proposed by the MeoCon Team in Hackfest 2022 By GDSC with a focus on SDG 3 (Good Health and Well-bein) and SDG 9 (Industry, Innovation, and Infrastructure)
 
@@ -19,11 +19,14 @@ To install, run
 ```
 pip install -r requirements.txt
 ```
-### Hardware
-
-
 ## SETUP
-- 
+Electrical component:
+- Arduino nano
+- ESP32
+- IR sensor (2)
+- Temperature sensor
+- Relay (Pump and Solenoid lock)
+- Ultrasonic sensor
 
 If you have limitations with electrical components, you can still try the real time mask detection. Just follow the instructions in ```src\MaskDetection\README.md```
 
