@@ -7,7 +7,7 @@ import cv2
 import serial
 import serial.tools.list_ports
 import time
-arduino = serial.Serial(port='COM9', baudrate=9600, timeout=1)
+arduino = serial.Serial(port='COM7', baudrate=9600, timeout=1)
 
 def write_read(x):
     arduino.write(bytes(x, 'utf-8'))
