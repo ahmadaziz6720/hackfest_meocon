@@ -1,4 +1,4 @@
-# APPROKES - HACKFEST 20222
+# APPROKES - HACKFEST 2022
 
 ## Table of Contents
 * [General Information](#general-information)
