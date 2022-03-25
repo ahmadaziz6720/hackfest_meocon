@@ -13,8 +13,8 @@ Approkes are a set of tools that are installed at the entrance of the building/r
 
 This product is a solution proposed by the MeoCon Team in Hackfest 2022 By GDSC with a focus on SDG 3 (Good Health and Well-bein) and SDG 9 (Industry, Innovation, and Infrastructure)
 
-![test](docs/maskDetectionTest.jpeg)
-![website](docs/preview%20web.jpg)
+![test](Docs/maskDetectionTest.jpeg)
+![website](Docs/preview%20web.jpg)
 
 Prototype Web: https://ahmadaziz6720.github.io/website_approkes/
 
