@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>apProkes</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .text-blue a{
+            color: #063E58;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+</head>
+<body>
+    <!-- BAGIAN NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark " style="background-color: #063E58;">
+        <div class="container">
+            <!-- bagian logo -->
+            <a class="navbar-brand" href="#" style="margin: 0;">
+                <img src="img/logo.png" alt="apProkes" height="45">
+            </a>
+            <!-- tombol responsive -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- link navigation bar -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" style="color: white;" id="navbarDropdown" aria-expanded="false">
+                        Account
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container py-3 mt-5">
+        <div class="row">
+            <!-- nav kiri -->
+            <div class="col-xl-4 p-3">
+                <!-- Profile -->
+                <div class="row border rounded mt-3 py-1">
+                    <!-- thumb -->
+                    <div class="col-xl-4 col-sm-4">
+                        <img src="img/thumb.png" class="img-thumbnail" alt="" style="border: 0px;">
+                    </div>
+                    <!-- data -->
+                    <div class="col-xl-8 col-sm-8" style="color: #063E58;">
+                        <h5 id="nama-p" class="fw-bold mt-3">Admin</h5>
+                        <p id="email-p" style="color: #575758;">Administrator approkes</p>
+                    </div>
+                </div>
+
+                <!-- navigasi -->
+                <div class="row fw-bold border rounded mt-3 py-1" style="color: #063E58;">
+                    <table class="table text-blue">
+                        <tr>
+                            <td><a href="#" class="text-decoration-none text-blue" onclick="munculkan('card');hilangkan('notAvailable');hilangkan('form')">Real Time Data</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="text-decoration-none text-blue" onclick="munculkan('form');hilangkan('notAvailable');hilangkan('card')">Rules</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">History</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">Statistics</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">PeduliLindungi</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">Settings</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">Sign Out</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- content -->
+            <div class="col-xl-8 p-3" style="color: #063E58;">
+                <div class="border rounded mt-3 p-3">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>Dashboard</h3>
+                        </div>
+                        <div id="edit" class="col-sm-6" align="right">
+                            <button type="button" class="btn btn-primary" onclick="munculkan('form'); munculkan('profil'); munculkan('edit')">Edit</button>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div id="notAvailable" class="row align-items-center" style="margin-top: 160px; margin-bottom: 160px;">
+                        <div align="right" style="text-align: center;">
+                            <h5>Features not yet available!</h5>
+                        </div>
+                    </div>
+
+                    <div id="realtime" class="row align-items-center"></div>
+                        <div id="card" class="row" style="text-align: center; margin-top: 70px; margin-bottom: 70px;">
+                            <div class="col-sm-4 my-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">People</h5>
+                                        <p class="card-text">23</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 my-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Active Gate</h5>
+                                        <p class="card-text">4</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 my-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">People Entered</h5>
+                                        <p class="card-text">56</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 my-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">People Out</h5>
+                                        <p class="card-text">33</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 my-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">No Mask</h5>
+                                        <p class="card-text">6</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 my-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Over Temperature</h5>
+                                        <p class="card-text">1</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="form">
+                        <h5>Insert Rules</h5>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Max People</label>
+                                <input type="text" class="form-control" id="role">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Max Body Temperature</label>
+                                <input type="text" class="form-control" id="nama" aria-describedby="nameHelp">
+                                <div id="nameHelp" class="form-text">In degrees celsius</div>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="kirim()">Save</button>
+                        </form>
+                    </div>
+
+                    <div id="profil">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>Nama</td>
+                                <td id="nama2"></td>
+                            </tr>
+                            <tr>
+                                <td>role</td>
+                                <td id="role2"></td>
+                            </tr>
+                            <tr>
+                                <td>availability</td>
+                                <td id="availability2"></td>
+                            </tr>
+                            <tr>
+                                <td>usia</td>
+                                <td id="usia2"></td>
+                            </tr>
+                            <tr>
+                                <td>lokasi</td>
+                                <td id="lokasi2"></td>
+                            </tr>
+                            <tr>
+                                <td>experience</td>
+                                <td id="experience2"></td>
+                            </tr>
+                            <tr>
+                                <td>email</td>
+                                <td id="email2"></td>
+                            </tr>
+                        </table>                        
+                    </div>
+                    
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- BAGIAN FOOTER -->
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: #063E58; color: white;">
+            <p class="footer-heart">
+                © 2022 Hackfest | Made with <g-emoji class="g-emoji" alias="heart" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
+              <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png"></g-emoji> by <a href="#">MeoCon</a>
+              </p>
+        </div>
+    </footer>
+
+    <!-- JAVA SCRIPT -->
+    <script>
+        munculkan("profil");
+        munculkan("form");
+        munculkan("edit");
+        munculkan("notAvailable");
+
+        function munculkan(id){
+            var elem = document.getElementById(id);
+            if (elem.style.display === "none") {
+                elem.style.display = "block";
+            } else {
+                elem.style.display = "none";
+            }
+        }
+
+        function hilangkan(id){
+            var elem = document.getElementById(id);
+            if (elem.style.display === "none") {
+                elem.style.display = "block";
+            }
+        }
+
+        function kirim() {
+            munculkan("edit");
+            munculkan("form");
+            munculkan("profil");
+
+            var nama = document.getElementById("nama").value;
+            var role = document.getElementById("role").value;
+            var availability = document.getElementById("availability").value;
+            var usia = document.getElementById("usia").value;
+            var lokasi = document.getElementById("lokasi").value;
+            var experience = document.getElementById("experience").value;
+            var email = document.getElementById("email").value;
+
+            document.getElementById("nama2").innerHTML = nama;
+            document.getElementById("nama-p").innerHTML = nama;
+            document.getElementById("role2").innerHTML = role;
+            document.getElementById("availability2").innerHTML = availability;
+            document.getElementById("usia2").innerHTML = usia;
+            document.getElementById("lokasi2").innerHTML = lokasi;
+            document.getElementById("experience2").innerHTML = experience;
+            document.getElementById("email2").innerHTML = email;
+            document.getElementById("email-p").innerHTML = email;
+        }
+    </script>
+</body>
+</html>
