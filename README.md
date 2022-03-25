@@ -16,6 +16,8 @@ This product is a solution proposed by the MeoCon Team in Hackfest 2022 By GDSC 
 ![test](docs/maskDetectionTest.jpeg)
 ![website](docs/preview%20web.jpg)
 
+Prototype Web: https://ahmadaziz6720.github.io/website_approkes/
+
 ## TECHNOLOGY USED
 This system is build with
 - [Python3](https://www.python.org)
