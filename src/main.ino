@@ -6,7 +6,7 @@ Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 // TX: pin 3
 SoftwareSerial serialesp(2, 3); // RX, TX
 
-define relay_pump 4
+#define relay_pump 4
 #define relay_lock 6
 #define ir_out 5
 #define trig 8
@@ -44,8 +44,8 @@ void loop() {
   else {
     digitalWrite(13, LOW);
   }
-  Serial.println(String(state) + " " + String(distance) + " " + String(digitalRead(ir_hs)) + " " + String(digitalRead(ir_out))+ " " + String(people))+ " " + String(temp));
-  serialesp.println(String(state) + " " + String(distance) + " " + String(digitalRead(ir_hs)) + " " + String(digitalRead(ir_out))+ " " + String(people))+ " " + String(temp));
+  Serial.println(String(state) + " " + String(distance) + " " + String(digitalRead(ir_hs)) + " " + String(digitalRead(ir_out))+ " " + String(people)+ " " + String(temp));
+  serialesp.println(String(state) + " " + String(distance) + " " + String(digitalRead(ir_hs)) + " " + String(digitalRead(ir_out))+ " " + String(people)+ " " + String(temp));
   
   //Ultrasonic
   digitalWrite(trig, LOW);delayMicroseconds(2);

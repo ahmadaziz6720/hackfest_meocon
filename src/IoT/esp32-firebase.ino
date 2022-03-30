@@ -5,8 +5,8 @@
 #include "addons/TokenHelper.h"
 #include "addons/RTDBHelper.h"
 
-#define WIFI_SSID "Redmi"
-#define WIFI_PASSWORD "qwertyuiop"
+#define WIFI_SSID "xxxxx"
+#define WIFI_PASSWORD "xxxxxxxxx"
 
 #define API_KEY "AIzaSyCTARMTNV8J6w24RJoR91RN8D07hZxkWZ0"
 #define DATABASE_URL "https://approkes-default-rtdb.asia-southeast1.firebasedatabase.app/" 
