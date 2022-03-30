@@ -55,14 +55,11 @@ void setup(){
 }
 
 void loop(){
-  //Serial communication
-  while (!Serial.available());
-  data = Serial.readString().toInt();
-
   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
-
-    if (Firebase.RTDB.setInt(&fbdo, "test/people", getValue(data, " ", 4))){
+    // Write an Int number on the database path test/int
+    count++;
+    if (Firebase.RTDB.setString(&fbdo, "test/string", "Haii Liza "+String(random(0,300)))){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
@@ -72,7 +69,20 @@ void loop(){
       Serial.println("REASON: " + fbdo.errorReason());
     }
     
-    if (Firebase.RTDB.setFloat(&fbdo, "test/temp", getValue(data, " ", 5))){
+    // Write an Int number on the database path test/int
+    if (Firebase.RTDB.setInt(&fbdo, "test/int", count)){
+      Serial.println("PASSED");
+      Serial.println("PATH: " + fbdo.dataPath());
+      Serial.println("TYPE: " + fbdo.dataType());
+    }
+    else {
+      Serial.println("FAILED");
+      Serial.println("REASON: " + fbdo.errorReason());
+    }
+    count++;
+    
+    // Write an Float number on the database path test/float
+    if (Firebase.RTDB.setFloat(&fbdo, "test/float", 0.01 + random(0,100))){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());

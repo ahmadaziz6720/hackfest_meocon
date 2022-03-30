@@ -66,25 +66,25 @@
                 <div class="row fw-bold border rounded mt-3 py-1" style="color: #063E58;">
                     <table class="table text-blue">
                         <tr>
-                            <td><a href="#" class="text-decoration-none text-blue" onclick="munculkan('card');hilangkan('notAvailable');hilangkan('form')">Real Time Data</a></td>
+                            <td><a href="#" class="text-decoration-none text-blue" onclick="hilangkan(); munculkan('realtime')">Real Time Data</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="text-decoration-none text-blue" onclick="munculkan('form');hilangkan('notAvailable');hilangkan('card')">Rules</a></td>
+                            <td><a href="#" class="text-decoration-none text-blue" onclick="hilangkan(); munculkan('form')">Rules</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">History</a></td>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;" onclick="hilangkan(); munculkan('notAvailable')">History</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">Statistics</a></td>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;" onclick="hilangkan(); munculkan('notAvailable')">Statistics</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">PeduliLindungi</a></td>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;" onclick="hilangkan(); munculkan('notAvailable')">PeduliLindungi</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">Settings</a></td>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;" onclick="hilangkan(); munculkan('notAvailable')">Settings</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="text-decoration-none" style="color: #063E58;">Sign Out</a></td>
+                            <td><a href="#" class="text-decoration-none" style="color: #063E58;" onclick="hilangkan(); munculkan('notAvailable')">Sign Out</a></td>
                         </tr>
                     </table>
                 </div>
@@ -98,18 +98,20 @@
                             <h3>Dashboard</h3>
                         </div>
                         <div id="edit" class="col-sm-6" align="right">
-                            <button type="button" class="btn btn-primary" onclick="munculkan('form'); munculkan('profil'); munculkan('edit')">Edit</button>
+                            <button type="button" class="btn btn-primary" onclick="hilangkan(); munculkan('form')">Edit</button>
                         </div>
                         <hr>
                     </div>
 
+                    <!-- Fitur Belum Tersedia -->
                     <div id="notAvailable" class="row align-items-center" style="margin-top: 160px; margin-bottom: 160px;">
                         <div align="right" style="text-align: center;">
                             <h5>Features not yet available!</h5>
                         </div>
                     </div>
 
-                    <div id="realtime" class="row align-items-center"></div>
+                    <!-- Tampilan data real time -->
+                    <div id="realtime" class="row align-items-center">
                         <div id="card" class="row" style="text-align: center; margin-top: 70px; margin-bottom: 70px;">
                             <div class="col-sm-4 my-2">
                                 <div class="card">
@@ -162,59 +164,38 @@
                         </div>
                     </div>
                     
+                    <!-- Form Rules -->
                     <div id="form">
                         <h5>Insert Rules</h5>
                         <form>
                             <div class="mb-3">
                                 <label class="form-label">Max People</label>
-                                <input type="text" class="form-control" id="role">
+                                <input type="text" class="form-control" id="people">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Max Body Temperature</label>
-                                <input type="text" class="form-control" id="nama" aria-describedby="nameHelp">
-                                <div id="nameHelp" class="form-text">In degrees celsius</div>
+                                <input type="text" class="form-control" id="tmp" aria-describedby="tmpHelp">
+                                <div id="tmpHelp" class="form-text">In degrees celsius</div>
                             </div>
                             <button type="button" class="btn btn-primary" onclick="kirim()">Save</button>
                         </form>
                     </div>
 
+                    <!-- Menampilkan Rules -->
                     <div id="profil">
                         <table class="table table-borderless">
                             <tr>
-                                <td>Nama</td>
-                                <td id="nama2"></td>
+                                <td>Max People</td>
+                                <td id="people2"></td>
                             </tr>
                             <tr>
-                                <td>role</td>
-                                <td id="role2"></td>
-                            </tr>
-                            <tr>
-                                <td>availability</td>
-                                <td id="availability2"></td>
-                            </tr>
-                            <tr>
-                                <td>usia</td>
-                                <td id="usia2"></td>
-                            </tr>
-                            <tr>
-                                <td>lokasi</td>
-                                <td id="lokasi2"></td>
-                            </tr>
-                            <tr>
-                                <td>experience</td>
-                                <td id="experience2"></td>
-                            </tr>
-                            <tr>
-                                <td>email</td>
-                                <td id="email2"></td>
+                                <td>Max Body Temperature</td>
+                                <td id="tmp2"></td>
                             </tr>
                         </table>                        
                     </div>
-                    
-
                 </div>
-            </div>
-            
+            </div>   
         </div>
     </div>
 
@@ -225,56 +206,11 @@
             <p class="footer-heart">
                 © 2022 Hackfest | Made with <g-emoji class="g-emoji" alias="heart" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
               <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png"></g-emoji> by <a href="#">MeoCon</a>
-              </p>
+            </p>
         </div>
     </footer>
 
     <!-- JAVA SCRIPT -->
-    <script>
-        munculkan("profil");
-        munculkan("form");
-        munculkan("edit");
-        munculkan("notAvailable");
-
-        function munculkan(id){
-            var elem = document.getElementById(id);
-            if (elem.style.display === "none") {
-                elem.style.display = "block";
-            } else {
-                elem.style.display = "none";
-            }
-        }
-
-        function hilangkan(id){
-            var elem = document.getElementById(id);
-            if (elem.style.display === "none") {
-                elem.style.display = "block";
-            }
-        }
-
-        function kirim() {
-            munculkan("edit");
-            munculkan("form");
-            munculkan("profil");
-
-            var nama = document.getElementById("nama").value;
-            var role = document.getElementById("role").value;
-            var availability = document.getElementById("availability").value;
-            var usia = document.getElementById("usia").value;
-            var lokasi = document.getElementById("lokasi").value;
-            var experience = document.getElementById("experience").value;
-            var email = document.getElementById("email").value;
-
-            document.getElementById("nama2").innerHTML = nama;
-            document.getElementById("nama-p").innerHTML = nama;
-            document.getElementById("role2").innerHTML = role;
-            document.getElementById("availability2").innerHTML = availability;
-            document.getElementById("usia2").innerHTML = usia;
-            document.getElementById("lokasi2").innerHTML = lokasi;
-            document.getElementById("experience2").innerHTML = experience;
-            document.getElementById("email2").innerHTML = email;
-            document.getElementById("email-p").innerHTML = email;
-        }
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
