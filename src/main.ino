@@ -11,7 +11,9 @@ Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 int masker = 0;
 int state = 0;
 boolean masuk =false;
-int people = 0;
+int people_in = 0;
+int people_out = 0;
+int current_people = 0;
 int maximumRange = 200;
 int minimumRange = 0;
 long duration, distance;
@@ -39,7 +41,8 @@ void loop() {
   else {
     digitalWrite(13, LOW);
   }
-  Serial.println(String(state) + " " + String(distance) + " " + String(digitalRead(ir_hs)) + " " + String(digitalRead(ir_out))+ " " + String(people)+ " " + String(temp));
+  current_people = people_in - people_out;
+  Serial.println(String(current_people) + " " + String(1) + " " + String(digitalRead(people_in)) + " " + String(digitalRead(people_out))+ " " + String(3)+ " " + String(8));
   
   //Ultrasonic
   digitalWrite(trig, LOW);delayMicroseconds(2);
@@ -55,7 +58,7 @@ void loop() {
 
   //Temperature Sensor
   temp = mlx.readAmbientTempC();
-  temp = 3.3;
+  temp = 3.3; //dummy
 
   //Mask Detection
   if(masker == 1 && state == 0){
@@ -82,9 +85,26 @@ void loop() {
     if(millis()-timer > 3000){
       digitalWrite(relay_lock, HIGH);
     }
+    if(digitalRead(ir_out)==1){
+      state = 4;
+    }
+  }
+  if(ir_out==0 && state==4){
+    people_in++;
+    state=0;
+  }
+  if(state==4){
     if(digitalRead(ir_out)==0){
-      people++;
       state=0;
+    }
+  }
+  if(digitalRead(ir_out)==1){
+    state=5;
+  }
+  if(state==5 && masuk==true){
+    if(digitalRead(ir_out)==0){
+      state=0;
+      people_out++;
     }
   }
 }
