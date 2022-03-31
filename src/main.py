@@ -1,4 +1,13 @@
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.models import load_model
+import numpy as np
+import cv2
+import serial
+import serial.tools.list_ports
+import time
 import pyrebase
+arduino = serial.Serial(port='COM5', baudrate=9600, timeout=1)
 
 config = {
     "apiKey": "AIzaSyABTMahcC3vLi7MvSOj04RqMBb1p-rFj-8",
@@ -12,16 +21,6 @@ config = {
 firebase = pyrebase.initialize_app(config)
 database = firebase.database()
 
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.models import load_model
-from time import sleep
-import numpy as np
-import cv2
-import serial
-import serial.tools.list_ports
-import time
-arduino = serial.Serial(port='COM5', baudrate=9600, timeout=1)
 
 def write_read(x):
     arduino.write(bytes(x, 'utf-8'))
@@ -74,12 +73,12 @@ green = (0, 255, 0)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 # face detector model
-ProtoPath = r"faceModel\deploy.prototxt"
-WeightsPath = r"faceModel\res10_300x300_ssd_iter_140000.caffemodel"
+ProtoPath = r"MaskDetecion\faceModel\deploy.prototxt"
+WeightsPath = r"MaskDetection\faceModel\res10_300x300_ssd_iter_140000.caffemodel"
 faceNet = cv2.dnn.readNet(ProtoPath, WeightsPath)
 
 # trained mask detection model
-maskNet = load_model("maskModel/trainedDetection.model")
+maskNet = load_model("MaskDetection/maskModel/trainedDetection.model")
 
 
 print("----------------------START----------------------")
