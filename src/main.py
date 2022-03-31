@@ -89,6 +89,7 @@ height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 i = 0
 while True:
+	i+=1
 	ret, frame = cap.read()
 
 	points, detects = detectMask(frame, faceNet, maskNet)
@@ -115,9 +116,7 @@ while True:
 	print(list_data)
 
 	data = {"People": str(i), "Active Gate": list_data[1], "People Entered": list_data[2], "People Out": list_data[3], "No Mask": list_data[4], "Temperature": list_data[5]}
-	database.child("test").set(data)
-
-    i += 1
+	database.child("Dashboard").set(data)
 
 	if (cv2.waitKey(1) & 0xFF) == ord("q"):
 		break
