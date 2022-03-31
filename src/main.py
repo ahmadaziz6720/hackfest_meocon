@@ -87,6 +87,7 @@ cap = cv2.VideoCapture(0)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
+i = 0
 while True:
 	ret, frame = cap.read()
 
@@ -105,6 +106,7 @@ while True:
 		cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
 		cv2.putText(frame, label, (x1, y1 - 10), font, 0.45, color, 2)
 
+
 	cv2.imshow("Mask Detection", frame)
 	# return True if mask > noMask else False
 	temp = "1" if mask > noMask else "0"
@@ -112,11 +114,14 @@ while True:
 	list_data = value.split()
 	print(list_data)
 
-	data = {"People": list_data[0], "Active Gate": list_data[1], "People Entered": list_data[2], "People Out": list_data[3], "No Mask": list_data[4], "Temperature": list_data[5]}
+	data = {"People": str(i), "Active Gate": list_data[1], "People Entered": list_data[2], "People Out": list_data[3], "No Mask": list_data[4], "Temperature": list_data[5]}
 	database.child("test").set(data)
+
+    i += 1
 
 	if (cv2.waitKey(1) & 0xFF) == ord("q"):
 		break
+    
 
 cap.release()
 cv2.destroyAllWindows()
