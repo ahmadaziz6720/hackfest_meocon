@@ -1,3 +1,17 @@
+import pyrebase
+
+config = {
+    "apiKey": "AIzaSyABTMahcC3vLi7MvSOj04RqMBb1p-rFj-8",
+    "authDomain": "approkes-89937.firebaseapp.com",
+    "databaseURL": "https://approkes-89937-default-rtdb.firebaseio.com",
+    "projectId": "approkes-89937",
+    "storageBucket": "approkes-89937.appspot.com",
+    "messagingSenderId": "1053571501098",
+    "appId": "1:1053571501098:web:973d9d46b2d659174dc753"
+}
+firebase = pyrebase.initialize_app(config)
+database = firebase.database()
+
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
@@ -74,7 +88,6 @@ cap = cv2.VideoCapture(0)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-i=0
 while True:
 	ret, frame = cap.read()
 
@@ -97,8 +110,11 @@ while True:
 	# return True if mask > noMask else False
 	temp = "1" if mask > noMask else "0"
 	value = write_read(temp)
-	i+=1
-	print(value, str(i))
+	list_data = value.split()
+	print(list_data)
+
+	data = {"State": list_data[0], "Distance": list_data[1], "IR_HS": list_data[2], "IR_OUT": list_data[3], "People": list_data[4], "Temperature": list_data[5]}
+	database.child("test").set(data)
 
 	if (cv2.waitKey(1) & 0xFF) == ord("q"):
 		break
