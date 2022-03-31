@@ -113,7 +113,7 @@ while True:
 	list_data = value.split()
 	print(list_data)
 
-	data = {"State": list_data[0], "Distance": list_data[1], "IR_HS": list_data[2], "IR_OUT": list_data[3], "People": list_data[4], "Temperature": list_data[5]}
+	data = {"People": list_data[0], "Active Gate": list_data[1], "People Entered": list_data[2], "People Out": list_data[3], "No Mask": list_data[4], "Temperature": list_data[5]}
 	database.child("test").set(data)
 
 	if (cv2.waitKey(1) & 0xFF) == ord("q"):

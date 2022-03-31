@@ -42,7 +42,7 @@ void loop() {
     digitalWrite(13, LOW);
   }
   current_people = people_in - people_out;
-  Serial.println(String(current_people) + " " + String(1) + " " + String(digitalRead(people_in)) + " " + String(digitalRead(people_out))+ " " + String(3)+ " " + String(8));
+  Serial.println(String(current_people) + " " + String(1) + " " + String(people_in) + " " + String(people_out)+ " " + String(3)+ " " + String(8));
   
   //Ultrasonic
   digitalWrite(trig, LOW);delayMicroseconds(2);
