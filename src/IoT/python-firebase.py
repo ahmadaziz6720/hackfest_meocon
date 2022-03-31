@@ -1,5 +1,5 @@
 # referensi: https://github.com/RishabKattimani/FirebaseDBToPython.git
-# pip install pyrebase
+# pip install pyrebase4
 
 import pyrebase
 

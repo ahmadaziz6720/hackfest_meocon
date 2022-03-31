@@ -2,5 +2,5 @@
     "configuration": "cpu=atmega328old",
     "board": "arduino:avr:nano",
     "sketch": "src\\main.ino",
-    "port": "COM9"
+    "port": "COM5"
 }
