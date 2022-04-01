@@ -11,8 +11,6 @@ const firebaseConfig = {
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-
-
 hilangkan("rules");
 hilangkan("form");
 hilangkan("edit");

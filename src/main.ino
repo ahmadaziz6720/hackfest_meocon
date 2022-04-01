@@ -1,6 +1,8 @@
+// Lib Contactless Temperature Sensor
 #include <Adafruit_MLX90614.h>
 Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
+// Define GPIO pins
 #define relay_pump 4
 #define relay_lock 6
 #define ir_out 5
@@ -8,18 +10,23 @@ Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 #define echo 7
 #define ir_hs 12
 
+// Declare Variables
 int masker = 0;
 int state = 0;
-boolean masuk =false;
 int people_in = 0;
 int people_out = 0;
 int current_people = 0;
 int maximumRange = 200;
 int minimumRange = 0;
+int active_gate = 0;
+int no_mask = 0;
+int over_temp = 0;
+boolean masuk =false;
 long duration, distance;
 unsigned long timer;
 float temp = 0;
 
+// Setup I/O etc.
 void setup() {
   pinMode(relay_pump, OUTPUT);
   pinMode(relay_lock, OUTPUT);
@@ -31,20 +38,10 @@ void setup() {
   Serial.setTimeout(1);
   pinMode(13, OUTPUT);
 }
+
 void loop() {
-  //Serial communication
-  while (!Serial.available());
-  masker = Serial.readString().toInt();
-  if (masker == 1) {
-    digitalWrite(13, HIGH);
-  }
-  else {
-    digitalWrite(13, LOW);
-  }
-  current_people = people_in - people_out;
-  Serial.println(String(current_people) + " " + String(1) + " " + String(people_in) + " " + String(people_out)+ " " + String(3)+ " " + String(8));
   
-  //Ultrasonic
+  //Read Ultrasonic Sensor
   digitalWrite(trig, LOW);delayMicroseconds(2);
   digitalWrite(trig, HIGH);delayMicroseconds(10);
   digitalWrite(trig, LOW);
@@ -56,13 +53,18 @@ void loop() {
     masuk =false;
   }
 
-  //Temperature Sensor
+  //Read Temperature Sensor
   temp = mlx.readAmbientTempC();
 
-  //Mask Detection
+  //Read From Serial - Mask Detection
+  while (!Serial.available());
+  masker = Serial.readString().toInt();
   if(masker == 1 && state == 0){
     state =1;
   }
+
+  current_people = people_in - people_out;
+  Serial.println(String(current_people) + " " + String(active_gate) + " " + String(people_in) + " " + String(people_out)+ " " + String(no_mask)+ " " + String(over_temp));
     
   //State Machine
   if(state==1 && digitalRead(ir_hs)==0){
