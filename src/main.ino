@@ -58,7 +58,6 @@ void loop() {
 
   //Temperature Sensor
   temp = mlx.readAmbientTempC();
-  temp = 3.3; //dummy
 
   //Mask Detection
   if(masker == 1 && state == 0){
