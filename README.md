@@ -1,4 +1,4 @@
-# APPROKES - HACKFEST 2022
+# APPROKES - GDSC Solution Challenge 2022
 
 ## Table of Contents
 * [General Information](#general-information)
@@ -9,14 +9,14 @@
 
 
 ## GENERAL INFORMATION
-Approkes are a set of tools that are installed at the entrance of the building/room to ensure that everyone who will enter the building has followed the health protocol. The protocols checked are wearing a mask, normal body temperature, using hand sanitizer, and the available room capacity. Visitor data will also be integrated to firebase.
+Approkes are a set of tools that are installed at the entrance of the building/room to ensure that everyone who will enter the building has followed the health protocol. The protocols checked are wearing a mask, normal body temperature, using hand sanitizer, and the available room capacity. Visitor data will also be integrated to firebase then can be accesed in website.
 
-This product is a solution proposed by the MeoCon Team in Hackfest 2022 By GDSC with a focus on SDG 3 (Good Health and Well-bein) and SDG 9 (Industry, Innovation, and Infrastructure)
+This product is a solution proposed by the MeoCon Team in Google Solution Challenge 2022 with a focus on SDG 3 (Good Health and Well-bein) and SDG 9 (Industry, Innovation, and Infrastructure)
 
-![test](Docs/maskDetectionTest.jpeg)
+Website: [approkes.site](http://approkes.site/)
 ![website](Docs/preview%20web.jpg)
+![test](Docs/maskDetectionTest.jpeg)
 
-Prototype Web: https://ahmadaziz6720.github.io/website_approkes/
 
 ## TECHNOLOGY USED
 This system is build with
@@ -24,6 +24,7 @@ This system is build with
 - [Tensorflow](https://www.tensorflow.org/)
 - [Firebase](https://firebase.google.com/)
 - [Arduino IDE](https://www.arduino.cc/en/software)
+- [Google Cloud Platform](https://cloud.google.com/)
 
 ## REQUIREMENTS
 ### Software
@@ -48,11 +49,11 @@ Electrical component:
     ```
 - Set up the electrical component above, you can find the used pin in ```src/main.ino```
 - Upload ```main.ino``` to arduino nano via Arduino IDE
-- Change terminal directory to src/MaskDetection, then run
+- Change terminal directory to src, then run
     ```
-    python realTimeDetection.py
+    python main.py
     ```
-    (note: both python and arduino code must have the same COM and baudrate)
+    (note: both python and arduino code must have the same COM port and baudrate)
 
 If you have limitations with electrical components, you can still try the real time mask detection. Just follow the instructions in ```src\MaskDetection\README.md```
 
@@ -62,5 +63,8 @@ Project is: _on development_
 
 ## AUTHORS
 This program was made by <b>MeoCon<b>
-- [Ahmad Aziz](13220034@std.stei.itb.ac.id)
-- [Putri Nurhaliza](13520066@std.stei.itb.ac.id)
+- [Ahmad Aziz](mailto:a715210)
+- [Putri Nurhaliza](mailto:putriliza05@gmail.com)
+
+
+note: side repo while build website, https://github.com/ahmadaziz6720/website_approkes.git
