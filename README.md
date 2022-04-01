@@ -16,13 +16,13 @@ This product is a solution proposed by the MeoCon Team in Google Solution Challe
 Website: [approkes.site](http://approkes.site/) </br>
 Full documentation: [Pitch Deck](https://docs.google.com/presentation/d/1wciP4B0OWye8p6DonxSyTiREJlOEnDzP4-jM-VciKpU/edit?usp=sharing)
 
-- Website
+- Website </br>
 ![website](Docs/website.jpg)
-- Firebase
+- Firebase </br>
 ![firebase](Docs/database.jpg)
-- Google Cloud
+- Google Cloud </br>
 ![GoogleCloud](Docs/googlecloudproject.jpeg)
-- Mask Detection Testing
+- Mask Detection Testing </br>
 ![test](Docs/maskDetectionTest.jpeg)
 
 
