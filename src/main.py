@@ -73,12 +73,12 @@ green = (0, 255, 0)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 # face detector model
-ProtoPath = r"MaskDetecion\faceModel\deploy.prototxt"
+ProtoPath = r"MaskDetection\faceModel\deploy.prototxt"
 WeightsPath = r"MaskDetection\faceModel\res10_300x300_ssd_iter_140000.caffemodel"
 faceNet = cv2.dnn.readNet(ProtoPath, WeightsPath)
 
 # trained mask detection model
-maskNet = load_model("MaskDetection/maskModel/trainedDetection.model")
+maskNet = load_model("MaskDetection\maskModel/trainedDetection.model")
 
 
 print("----------------------START----------------------")
@@ -87,11 +87,8 @@ cap = cv2.VideoCapture(0)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-i = 0
 while True:
-	i+=1
 	ret, frame = cap.read()
-
 	points, detects = detectMask(frame, faceNet, maskNet)
 
 	for (box, pred) in zip(points, detects):
@@ -107,7 +104,6 @@ while True:
 		cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
 		cv2.putText(frame, label, (x1, y1 - 10), font, 0.45, color, 2)
 
-
 	cv2.imshow("Mask Detection", frame)
 	# return True if mask > noMask else False
 	temp = "1" if mask > noMask else "0"
@@ -115,12 +111,11 @@ while True:
 	list_data = value.split()
 	print(list_data)
 
-	data = {"People": str(i), "Active Gate": list_data[1], "People Entered": list_data[2], "People Out": list_data[3], "No Mask": list_data[4], "Temperature": list_data[5]}
+	data = {"People": list_data[0], "ActiveGate": list_data[1], "PeopleEntered": list_data[2], "PeopleOut": list_data[3], "NoMask": list_data[4], "OverTemperature": list_data[5]}
 	database.child("Dashboard").set(data)
 
 	if (cv2.waitKey(1) & 0xFF) == ord("q"):
 		break
-    
 
 cap.release()
 cv2.destroyAllWindows()
