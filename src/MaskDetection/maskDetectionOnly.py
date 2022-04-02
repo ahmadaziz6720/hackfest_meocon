@@ -61,8 +61,8 @@ maskNet = load_model("maskModel/trainedDetection.model")
 print("----------------------START----------------------")
 
 cap = cv2.VideoCapture(0)
-width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 while True:
 	ret, frame = cap.read()
