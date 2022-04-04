@@ -2,6 +2,10 @@
 #include <Adafruit_MLX90614.h>
 Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
+// LCD Display
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
 // Define GPIO pins
 #define relay_pump 4
 #define relay_lock 6
@@ -37,6 +41,8 @@ void setup() {
   Serial.begin(9600);
   Serial.setTimeout(1);
   pinMode(13, OUTPUT);
+
+  lcd.begin();
 }
 
 void loop() {
@@ -96,11 +102,11 @@ void loop() {
   }
   if(state==4){
     if(digitalRead(ir_out)==0){
-      state=0;
+      state=0; //standby
     }
   }
   if(digitalRead(ir_out)==1){
-    state=5;
+    state=5; //People Out
   }
   if(state==5 && masuk==true){
     if(digitalRead(ir_out)==0){
