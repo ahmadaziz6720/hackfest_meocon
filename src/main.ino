@@ -1,6 +1,6 @@
 // Lib Contactless Temperature Sensor
-#include <Adafruit_MLX90614.h>
-Adafruit_MLX90614 mlx = Adafruit_MLX90614();
+// #include <Adafruit_MLX90614.h>
+// Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
 // LCD Display
 #include <LiquidCrystal_I2C.h>
@@ -60,13 +60,25 @@ void loop() {
   }
 
   //Read Temperature Sensor
-  temp = mlx.readAmbientTempC();
+  // temp = mlx.readAmbientTempC();
+  temp = 0; //dummy
 
   //Read From Serial - Mask Detection
   while (!Serial.available());
   masker = Serial.readString().toInt();
+  if(state == 0){
+    lcd.setCursor(0,0);
+    lcd.print("     Welcome    ");
+    lcd.setCursor(0,1);
+    lcd.print(" To MeoCon Corp ");
+  }
+
   if(masker == 1 && state == 0){
     state =1;
+    lcd.setCursor(0,0);
+    lcd.print(" Mask Detected  ");
+    lcd.setCursor(0,1);
+    lcd.print("Check Tmperature");
   }
 
   current_people = people_in - people_out;
@@ -77,39 +89,46 @@ void loop() {
     digitalWrite(relay_pump, LOW);
     timer = millis();
     state = 2;
+    lcd.setCursor(0,0);
+    lcd.print("   Your TMP:    ");
+    lcd.setCursor(0,1);
+    lcd.print("     "+String(temp)+" C      ");
   }
   if(state==2){
     if(millis()-timer > 500){
       digitalWrite(relay_pump, HIGH);
     }
-    if(masuk==true){
+    if(masuk==true){ //Orangnya terdeteksi sensor, kunci terbuka
       digitalWrite(relay_lock, LOW);
       timer = millis();
       state = 3;
+      lcd.setCursor(0,0);
+      lcd.print("  Door Opened   ");
+      lcd.setCursor(0,1);
+      lcd.print(" Please come in ");
     }
   }
   if(state==3){
     if(millis()-timer > 3000){
       digitalWrite(relay_lock, HIGH);
     }
-    if(digitalRead(ir_out)==1){
+    if(digitalRead(ir_out)==1){ //Pint dibuka (di dorong)
       state = 4;
+      lcd.setCursor(0,0);
+      lcd.print("                ");
+      lcd.setCursor(0,1);
+      lcd.print("                ");
     }
   }
-  if(ir_out==0 && state==4){
+  if(digitalRead(ir_out)==0 && state==4){ // Pintu udah ketutup lagi
     people_in++;
     state=0;
-  }
-  if(state==4){
-    if(digitalRead(ir_out)==0){
-      state=0; //standby
-    }
   }
   if(digitalRead(ir_out)==1){
     state=5; //People Out
   }
-  if(state==5 && masuk==true){
-    if(digitalRead(ir_out)==0){
+  if(state==5 && masuk==true){ // orang udah ngelewatin pintu
+    if(digitalRead(ir_out)==0){ // pintu udah ditutup lagi
       state=0;
       people_out++;
     }
