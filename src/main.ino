@@ -1,6 +1,6 @@
 // Lib Contactless Temperature Sensor
-// #include <Adafruit_MLX90614.h>
-// Adafruit_MLX90614 mlx = Adafruit_MLX90614();
+#include <Adafruit_MLX90614.h>
+Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
 // LCD Display
 #include <LiquidCrystal_I2C.h>
@@ -60,8 +60,7 @@ void loop() {
   }
 
   //Read Temperature Sensor
-  // temp = mlx.readAmbientTempC();
-  temp = 0; //dummy
+  temp = mlx.readAmbientTempC();
 
   //Read From Serial - Mask Detection
   while (!Serial.available());
