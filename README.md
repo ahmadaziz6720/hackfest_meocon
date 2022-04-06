@@ -14,7 +14,8 @@ Approkes are a set of tools that are installed at the entrance of the building/r
 This product is a solution proposed by the MeoCon Team in Google Solution Challenge 2022 with a focus on SDG 3 (Good Health and Well-bein) and SDG 9 (Industry, Innovation, and Infrastructure)
 
 Website: [approkes.site](http://approkes.site/) </br>
-Full documentation: [Pitch Deck](https://docs.google.com/presentation/d/1wciP4B0OWye8p6DonxSyTiREJlOEnDzP4-jM-VciKpU/edit?usp=sharing)
+Full documentation: [Pitch Deck](https://docs.google.com/presentation/d/1wciP4B0OWye8p6DonxSyTiREJlOEnDzP4-jM-VciKpU/edit?usp=sharing) <br>
+Video Demo: [YouTube Video](https://youtu.be/dwc3f8Oy4HQ)
 
 - Website </br>
 ![website](Docs/website.jpg)
